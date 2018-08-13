@@ -45,3 +45,54 @@ INSERT INTO movies (title, year, show_time) VALUES ('Ant-Man', 2015, '15:20');
 INSERT INTO movies (title, year, show_time) VALUES ('Captain America: Civil War', 2016, '22:45');
 INSERT INTO movies (title, year, show_time) VALUES ('Doctor Strange', 2016, '22:00');
 INSERT INTO movies (title, year, show_time) VALUES ('Guardians of the Galaxy 2', 2017, '15:30');
+
+-- 1.  Return ALL the data in the 'movies' table.
+SELECT * FROM movies;
+
+-- 2.  Return ONLY the name column from the 'people' table
+SELECT name FROM people;
+
+-- 3.  Oops! Someone at CodeClan spelled Graham's name wrong! Change it to reflect the proper spelling ('Graeme Broose' should be 'Graham Bruce').
+UPDATE people
+	SET name = 'Graham Bruce'
+	WHERE name = 'Graeme Broose';
+
+-- 4. Insert your name into the 'people' table.
+INSERT INTO people (name)
+	VALUES ('Simon Shephard');
+
+-- 5.  Return ONLY your name from the 'people' table.
+SELECT name FROM people
+	WHERE name = 'Simon Shephard';
+
+-- 6.  The cinema is showing 'Batman Begins', but Batman is DC, not Marvel! Delete the entry from the 'movies' table.
+DELETE FROM movies
+  WHERE title = 'Batman Begins';
+
+-- 7.  Create a new entry in the 'people' table with the name of one of the instructors.
+INSERT INTO people (name)
+	VALUES ('Craig Morton');
+
+-- 8.  Craig has decided to hijack our movie evening, Remove him from the table of people.
+DELETE FROM people
+	WHERE name = 'Craig Morton';
+
+-- 9.  The cinema has just heard that they will be holding an exclusive midnight showing of 'Avengers: Infinity War'!! Create a new entry in the 'movies' table to reflect this.
+INSERT INTO movies (title, year, show_time)
+	VALUES ('Avengers: Infinity War', 2018, '00:00');
+-- 10.  The cinema would also like to make the Guardians movies a back to back feature. Find out the show time of "Guardians of the Galaxy" and set the show time of "Guardians of the Galaxy 2" to start two hours later.
+SELECT show_time FROM movies
+	WHERE title = 'Guardians of the Galaxy';
+INSERT INTO movies (title, year, show_time)
+	VALUES ('Guardians of the Galaxy 2', 2017, '20:55');
+
+--
+-- ## Extension
+--
+-- 1.  Research how to delete multiple entries from your table in a single command.
+DELETE FROM people
+	WHERE name in ('Christopher Burn', 'David Clarkson');
+DELETE FROM movies
+	WHERE id in (SELECT id FROM movies WHERE year = 2015);
+SELECT * FROM movies;
+SELECT * FROM people;
